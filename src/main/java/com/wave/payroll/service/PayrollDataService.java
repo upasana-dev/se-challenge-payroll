@@ -1,6 +1,6 @@
 package com.wave.payroll.service;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -28,7 +28,7 @@ public class PayrollDataService {
 	public Map<PayoutPeriod, Double> computeEmployeeEfforts(List<EmployeeEffort> employeeEfforts) {
 
 		// Keeps track of the total worked hours for each payout period
-		Map<PayoutPeriod, Double> payoutPeriodEfforts = new HashMap<>();
+		Map<PayoutPeriod, Double> payoutPeriodEfforts = new LinkedHashMap<>();
 
 		for (EmployeeEffort effort : employeeEfforts) {
 

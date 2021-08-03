@@ -29,7 +29,7 @@ public class Employee {
 
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "EMPLOYEE_ID")
-	@OrderBy("effortDate ASC")
+	@OrderBy("effortDate")
 	private List<EmployeeEffort> employeeEfforts = new ArrayList<>();
 
 	public List<EmployeeEffort> getEmployeeEfforts() {
