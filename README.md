@@ -171,36 +171,37 @@ This endpoint will accept a CSV file and use the information in this file to upd
 ##### Using curl 
 
 ###### Windows
-__curl -F file=@\"<path to CSV file>\"  localhost:8080/payroll/info__
+```curl -F file=@\"<path to CSV file>\"  localhost:8080/payroll/info__```
 
 (Double quotes need to be used for Windows)
 
 ###### Other platforms
-__curl -F file=@'<path to CSV file>'  localhost:8080/payroll/info__
+```curl -F file=@'<path to CSV file>'  localhost:8080/payroll/info```
 
 #### Generate Payroll Report
 This endpoint will trigger the generation of a payroll report
 
-Request Type : POST
-URL :  __localhost:8080/payroll/report__
+* Request Type : POST
+* URL :  __localhost:8080/payroll/report__
 
-Using curl : __curl localhost:8080/payroll/report__
+#### Using curl
+```curl localhost:8080/payroll/report```
 
 ### Answers to Documentation Questions
 
 * The implementation was tested using a combination of unit tests and functional tests (tests by running the application and verifying the output) 
 * If this application was destined for production, the following would have been added/considered:-
-	* a) Creation of DTOs to ferry information from the data to the service layer. Currently, the service layer makes use of model objects directly, using DTOs instead would ensure a clean
-	separation.
-	* b) Input validation. Currently, each of the layers accept data without verifying that the content is in the right form - there is no kind of validation performed on the file name before inserting it into the DB
+	* a) Creation of DTOs to ferry information from the data to the service layer. Currently, the service layer makes use of model objects directly, using DTOs instead would ensure a clean separation.
+	* b) Input validation. Currently, each of the layers accept data without verifying that the content is in the right form, for example there is no kind of validation performed on the file name before inserting it into the DB
 	* c) Validating the employee effort details for duplicates to ensure that there aren't multiple entries for a single date for the same employee
 	* d) More refined exception handling with custom exceptions for different scenarios to allow a more fine-tuned response
-	* d) A more sophisticated logging mechanism that provides more insight into each process.
+	* d) A more sophisticated logging mechanism that provides more insight into the operation of each process.
 	* e) Performance-specific considerations - the payroll report uses all the data from the database. If the data set is much larger, the report generation would need to be tested and optimised to improve its performance
 * If there was no time constraint, I would have liked to:-
 	* Add more unit tests to test the functionality more thoroughly
 	* Add DB validation as mentioned in the point above
 	* Organized the packages more cleanly
+	* Refine the API paths
 	
 
 
