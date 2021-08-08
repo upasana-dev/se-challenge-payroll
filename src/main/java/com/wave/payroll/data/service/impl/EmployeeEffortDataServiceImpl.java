@@ -1,4 +1,4 @@
-package com.wave.payroll.service;
+package com.wave.payroll.data.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,20 +7,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.wave.payroll.data.service.EmployeeDataService;
+import com.wave.payroll.data.service.EmployeeEffortDataService;
 import com.wave.payroll.model.Employee;
 import com.wave.payroll.model.EmployeeEffort;
 import com.wave.payroll.model.constants.JobGroup;
 import com.wave.payroll.service.dto.EmployeeEffortData;
 
 /**
- * Data-centric service that performs functions relating to employee effort data
+ * Data-centric service that performs functions relating to
+ * {@link EmployeeEffort}
  */
 @Service
-public class EmployeeEffortDataServiceImpl {
+public class EmployeeEffortDataServiceImpl implements EmployeeEffortDataService {
 
 	@Autowired
 	private EmployeeDataService employeeDataService;
 
+	@Override
 	@Transactional
 	public void updateEmployeeEffortData(Long userBusinessId, List<EmployeeEffortData> effortDataList) {
 

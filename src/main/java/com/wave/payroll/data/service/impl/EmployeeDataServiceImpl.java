@@ -1,10 +1,11 @@
-package com.wave.payroll.service;
+package com.wave.payroll.data.service.impl;
 
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.wave.payroll.data.service.EmployeeDataService;
 import com.wave.payroll.model.Employee;
 import com.wave.payroll.repository.EmployeeRepository;
 
@@ -13,7 +14,7 @@ import com.wave.payroll.repository.EmployeeRepository;
  */
 
 @Service
-public class EmployeeDataService {
+public class EmployeeDataServiceImpl implements EmployeeDataService {
 
 	@Autowired
 	private EmployeeRepository employeeRepository;

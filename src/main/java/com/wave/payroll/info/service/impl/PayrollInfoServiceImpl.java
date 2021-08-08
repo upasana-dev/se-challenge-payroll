@@ -1,4 +1,4 @@
-package com.wave.payroll.service;
+package com.wave.payroll.info.service.impl;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,52 +11,55 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
-import com.wave.payroll.model.PayrollDataReport;
-import com.wave.payroll.repository.PayrollDataReportRepository;
+import com.wave.payroll.data.service.EmployeeEffortDataService;
+import com.wave.payroll.data.service.PayrollInfoFileDataService;
+import com.wave.payroll.info.service.PayrollInfoService;
 import com.wave.payroll.service.dto.EmployeeEffortData;
 
 @Service
-public class EmployeeEffortReportServiceImpl {
+public class PayrollInfoServiceImpl implements PayrollInfoService {
 
 	@Autowired
-	private EmployeeEffortDataServiceImpl employeeEffortService;
+	private EmployeeEffortDataService employeeEffortService;
 
 	@Autowired
-	private PayrollDataReportRepository reportRepository;
+	private PayrollInfoFileDataService infoFileService;
 
-	@Transactional
-	public void importPayrollData(MultipartFile importedData) {
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
+	public void importEmployeeEffortInfo(MultipartFile importedData) {
 
-		// Validate the file - store it in the DB
-		validateReport(importedData.getOriginalFilename());
+		String importedFileName = importedData.getOriginalFilename();
+
+		validateReport(importedFileName);
 
 		List<EmployeeEffortData> effortDataList = extractDataFromFile(importedData);
 
 		processUploadedData(effortDataList);
+
+		// Register the file as processed once the data has been processed
+		infoFileService.registerFile(importedFileName);
 	}
 
 	/**
-	 * Checks if this report has already been uploaded, if not, creates a new entry
-	 * for the report in the database
+	 * Validates if the file is fit for processing
 	 * 
 	 * @param fileName Name of the file
 	 */
 	private void validateReport(String fileName) {
-		if (reportRepository.existsByReportName(fileName)) {
+		if (infoFileService.doesFileExist(fileName)) {
 			throw new RuntimeException(
 					"Effort Report with name " + fileName + " has already been processed. Aborting upload");
-		} else {
-			reportRepository.save(new PayrollDataReport(fileName));
 		}
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	List<EmployeeEffortData> extractDataFromFile(MultipartFile importedData) {
+	private List<EmployeeEffortData> extractDataFromFile(MultipartFile importedData) {
 		List<EmployeeEffortData> effortDataList = new ArrayList<EmployeeEffortData>();
 
 		try (Reader reader = new BufferedReader(new InputStreamReader(importedData.getInputStream()))) {
@@ -67,7 +70,8 @@ public class EmployeeEffortReportServiceImpl {
 			effortDataList = csvToBean.parse();
 
 		} catch (IOException ioException) {
-			throw new RuntimeException("An issue was encountered while processing the report, exiting process",
+			throw new RuntimeException(
+					"An issue was encountered while extracting data from the payroll info file, exiting process",
 					ioException);
 		}
 

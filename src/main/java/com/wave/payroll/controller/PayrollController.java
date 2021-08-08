@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.wave.payroll.info.service.PayrollInfoService;
 import com.wave.payroll.report.service.PayrollReportService;
-import com.wave.payroll.service.EmployeeEffortReportServiceImpl;
 import com.wave.payroll.service.dto.PayrollReport;
 
 @RestController
@@ -20,7 +20,7 @@ public class PayrollController {
 	private PayrollReportService reportService;
 
 	@Autowired
-	private EmployeeEffortReportServiceImpl employeeEffortService;
+	private PayrollInfoService employeeEffortService;
 
 	@GetMapping("/report")
 	public PayrollReport generatePayrollReport() {
@@ -33,7 +33,7 @@ public class PayrollController {
 		if (importData == null) {
 			throw new RuntimeException("Invalid file passed in parameter!");
 		}
-		employeeEffortService.importPayrollData(importData);
+		employeeEffortService.importEmployeeEffortInfo(importData);
 	}
 
 }

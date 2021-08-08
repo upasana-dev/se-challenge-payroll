@@ -6,11 +6,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class PayrollDataReport {
+public class PayrollInfoFile {
 
-	public PayrollDataReport(String reportName) {
+	public PayrollInfoFile(String reportName) {
 		super();
-		this.reportName = reportName;
+		this.fileName = reportName;
 	}
 
 	@Id
@@ -20,14 +20,14 @@ public class PayrollDataReport {
 	 */
 	private Long id;
 
-	private String reportName;
+	private String fileName;
 
-	public String getReportName() {
-		return reportName;
+	public String getFileName() {
+		return fileName;
 	}
 
-	public void setReportName(String reportName) {
-		this.reportName = reportName;
+	public void setReportName(String fileName) {
+		this.fileName = fileName;
 	}
 
 }
