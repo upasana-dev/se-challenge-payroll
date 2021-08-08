@@ -165,18 +165,18 @@ The endpoints can be invoked using the command-line tool 'curl'
 #### Import Employee Job Effort Info
 This endpoint will accept a CSV file and use the information in this file to update the number of hours worked per day per employee
 
-Request Type : GET
-URL :  __localhost:8080/payroll/info__
+* Request Type : GET
+* URL :  __localhost:8080/payroll/info__
 
-Using curl : 
+##### Using curl 
 
-Windows
-__curl -F file=@\"<path to CSV file>"  localhost:8080/payroll/data__
+###### Windows
+__curl -F file=@\"<path to CSV file>\"  localhost:8080/payroll/info__
 
 (Double quotes need to be used for Windows)
 
-Other platforms
-__curl -F file=@'<path to CSV file>'  localhost:8080/payroll/data__
+###### Other platforms
+__curl -F file=@'<path to CSV file>'  localhost:8080/payroll/info__
 
 #### Generate Payroll Report
 This endpoint will trigger the generation of a payroll report
