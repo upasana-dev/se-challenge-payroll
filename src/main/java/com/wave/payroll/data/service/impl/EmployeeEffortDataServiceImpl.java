@@ -14,10 +14,6 @@ import com.wave.payroll.model.EmployeeEffort;
 import com.wave.payroll.model.constants.JobGroup;
 import com.wave.payroll.service.info.dto.EmployeeEffortData;
 
-/**
- * Data-centric service that performs functions relating to
- * {@link EmployeeEffort}
- */
 @Service
 public class EmployeeEffortDataServiceImpl implements EmployeeEffortDataService {
 
@@ -26,9 +22,9 @@ public class EmployeeEffortDataServiceImpl implements EmployeeEffortDataService 
 
 	@Override
 	@Transactional
-	public void updateEmployeeEffortData(Long userBusinessId, List<EmployeeEffortData> effortDataList) {
+	public void updateEmployeeEffortData(Long employeeBusinessId, List<EmployeeEffortData> effortDataList) {
 
-		Employee employee = employeeDataService.createOrGetEmployee(userBusinessId);
+		Employee employee = employeeDataService.createOrGetEmployee(employeeBusinessId);
 
 		List<EmployeeEffort> employeeEffortList = new ArrayList<>();
 

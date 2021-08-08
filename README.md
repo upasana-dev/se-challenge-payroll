@@ -150,3 +150,58 @@ Evaluation of your submission will be based on the following criteria.
    they explained?
 1. Did you separate any concerns in your application? Why or why not?
 1. Does your solution use appropriate data types for the problem as described?
+
+## Solution
+The application uses Maven Wrapper and can be built and run using the "mvnw" command:-
+
+* To build : mvnw clean install
+  * The unit tests are automatically run as part of this command
+*  To run the application : mvnw spring-boot:run
+
+### API Endpoints
+
+The endpoints can be invoked using the command-line tool 'curl'
+
+#### Import Employee Job Effort Info
+This endpoint will accept a CSV file and use the information in this file to update the number of hours worked per day per employee
+
+Request Type : GET
+URL :  __localhost:8080/payroll/info__
+
+Using curl : 
+
+Windows
+__curl -F file=@\"<path to CSV file>"  localhost:8080/payroll/data__
+
+(Double quotes need to be used for Windows)
+
+Other platforms
+__curl -F file=@'<path to CSV file>'  localhost:8080/payroll/data__
+
+#### Generate Payroll Report
+This endpoint will trigger the generation of a payroll report
+
+Request Type : POST
+URL :  __localhost:8080/payroll/report__
+
+Using curl : __curl localhost:8080/payroll/report__
+
+### Answers to Documentation Questions
+
+* The implementation was tested using a combination of unit tests and functional tests (tests by running the application and verifying the output) 
+* If this application was destined for production, the following would have been added/considered:-
+	* a) Creation of DTOs to ferry information from the data to the service layer. Currently, the service layer makes use of model objects directly, using DTOs instead would ensure a clean
+	separation.
+	* b) Input validation. Currently, each of the layers accept data without verifying that the content is in the right form - there is no kind of validation performed on the file name before inserting it into the DB
+	* c) Validating the employee effort details for duplicates to ensure that there aren't multiple entries for a single date for the same employee
+	* d) More refined exception handling with custom exceptions for different scenarios to allow a more fine-tuned response
+	* d) A more sophisticated logging mechanism that provides more insight into each process.
+	* e) Performance-specific considerations - the payroll report uses all the data from the database. If the data set is much larger, the report generation would need to be tested and optimised to improve its performance
+* If there was no time constraint, I would have liked to:-
+	* Add more unit tests to test the functionality more thoroughly
+	* Add DB validation as mentioned in the point above
+	* Organized the packages more cleanly
+	
+
+
+
