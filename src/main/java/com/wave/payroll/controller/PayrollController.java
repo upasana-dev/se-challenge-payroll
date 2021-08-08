@@ -35,7 +35,7 @@ public class PayrollController {
 	}
 
 	@SuppressWarnings("rawtypes")
-	@PostMapping("/data")
+	@PostMapping("/info")
 	public ResponseEntity importPayrollData(@RequestParam("file") MultipartFile importData) {
 
 		try {

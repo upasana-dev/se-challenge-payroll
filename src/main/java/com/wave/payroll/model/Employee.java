@@ -12,6 +12,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 
+/**
+ * Represents an Employee in the Payroll system. Payroll data is generated per
+ * Employee
+ */
 @Entity
 public class Employee {
 
@@ -27,6 +31,9 @@ public class Employee {
 	 */
 	private Long businessId;
 
+	/**
+	 * Links an Employee to all their corresponding {@link EmployeeEffort}
+	 */
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "EMPLOYEE_ID")
 	@OrderBy("effortDate")

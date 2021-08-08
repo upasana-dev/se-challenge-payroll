@@ -5,6 +5,10 @@ import java.time.LocalDate;
 import com.opencsv.bean.CsvBindByName;
 import com.opencsv.bean.CsvDate;
 
+/**
+ * Structure containing the data pertaining to an employee's job effort
+ * extracted as part of the import process
+ */
 public class EmployeeEffortData {
 
 	public EmployeeEffortData() {

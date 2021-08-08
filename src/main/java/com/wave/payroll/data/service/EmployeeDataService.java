@@ -2,6 +2,9 @@ package com.wave.payroll.data.service;
 
 import com.wave.payroll.model.Employee;
 
+/**
+ * Performs data-centric operations specific to {@link Employee}
+ */
 public interface EmployeeDataService {
 
 	/**

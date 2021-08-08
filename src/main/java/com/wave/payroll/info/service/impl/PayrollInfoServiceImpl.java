@@ -47,7 +47,7 @@ public class PayrollInfoServiceImpl implements PayrollInfoService {
 	}
 
 	/**
-	 * Validates if the file is fit for processing
+	 * Validates if the file is okay for processing
 	 * 
 	 * @param fileName Name of the file
 	 */
@@ -58,6 +58,13 @@ public class PayrollInfoServiceImpl implements PayrollInfoService {
 		}
 	}
 
+	/**
+	 * Extracts the information from the given file and transforms it into one
+	 * {@link EmployeeEffortData} per row
+	 * 
+	 * @param importedData File with the imported info
+	 * @return List of {@link EmployeeEffortData}
+	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private List<EmployeeEffortData> extractDataFromFile(MultipartFile importedData) {
 		List<EmployeeEffortData> effortDataList = new ArrayList<EmployeeEffortData>();
@@ -78,6 +85,11 @@ public class PayrollInfoServiceImpl implements PayrollInfoService {
 		return effortDataList;
 	}
 
+	/**
+	 * Processes the extracted data and adds it to the database
+	 * 
+	 * @param effortData Data to be processed
+	 */
 	private void processUploadedData(List<EmployeeEffortData> effortData) {
 
 		Map<Long, List<EmployeeEffortData>> map = effortData.stream()

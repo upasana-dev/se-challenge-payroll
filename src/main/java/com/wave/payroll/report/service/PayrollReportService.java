@@ -3,7 +3,7 @@ package com.wave.payroll.report.service;
 import com.wave.payroll.service.report.dto.PayrollReport;
 
 /**
- * Performs logic specific to the generation of the payroll report
+ * Performs logic specific to the generation of the Payroll Report
  *
  */
 public interface PayrollReportService {

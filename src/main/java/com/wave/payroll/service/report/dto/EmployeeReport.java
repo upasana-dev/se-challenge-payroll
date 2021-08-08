@@ -1,11 +1,23 @@
 package com.wave.payroll.service.report.dto;
 
+/**
+ * Structure containing the payroll data specific to a a single employee
+ */
 public class EmployeeReport {
 
+	/**
+	 * Business identifier for the employee
+	 */
 	private Long employeeId;
 
+	/**
+	 * Date range for which the payroll data is applicable
+	 */
 	private PayoutPeriod payPeriod;
 
+	/**
+	 * Wages for the employee across the specified payout period
+	 */
 	private String amountPaid;
 
 	public Long getEmployeeId() {

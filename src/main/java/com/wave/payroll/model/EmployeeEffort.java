@@ -11,6 +11,9 @@ import javax.persistence.Id;
 
 import com.wave.payroll.model.constants.JobGroup;
 
+/**
+ * Represents the job effort for a specific {@link Employee} on a specific day
+ */
 @Entity
 public class EmployeeEffort {
 
@@ -20,11 +23,19 @@ public class EmployeeEffort {
 	 * This is an internal ID that will not be exposed to the customer
 	 */
 	private Long id;
-
+	/**
+	 * The date for which the job effort is recorded
+	 */
 	private LocalDate effortDate;
 
+	/**
+	 * Number of hours of worked by the employee
+	 */
 	private double hoursWorked;
 
+	/**
+	 * Category of work performed by the Employee
+	 */
 	@Enumerated(EnumType.STRING)
 	private JobGroup wageGroup;
 
