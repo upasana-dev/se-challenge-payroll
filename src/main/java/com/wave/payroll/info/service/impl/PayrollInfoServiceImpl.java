@@ -97,7 +97,7 @@ public class PayrollInfoServiceImpl implements PayrollInfoService {
 
 		for (Long employeeBusinessId : map.keySet()) {
 			// Add employee effort by employee
-			employeeEffortService.updateEmployeeEffortData(employeeBusinessId, effortData);
+			employeeEffortService.updateEmployeeEffortData(employeeBusinessId, map.get(employeeBusinessId));
 		}
 
 	}
