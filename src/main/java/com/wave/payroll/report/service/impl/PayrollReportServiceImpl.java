@@ -1,4 +1,4 @@
-package com.wave.payroll.service;
+package com.wave.payroll.report.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,51 +8,50 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wave.payroll.model.Employee;
+import com.wave.payroll.report.service.PayrollReportDataService;
+import com.wave.payroll.report.service.PayrollReportService;
 import com.wave.payroll.repository.EmployeeRepository;
 import com.wave.payroll.service.dto.EmployeeReport;
 import com.wave.payroll.service.dto.PayoutPeriod;
 import com.wave.payroll.service.dto.PayrollReport;
 
-/**
- * Service performing logic specific to the generation of the payroll report
- *
- */
 @Service
-public class PayrollReportService {
+public class PayrollReportServiceImpl implements PayrollReportService {
 
 	@Autowired
-	private PayrollDataService payrollDataService;
+	private PayrollReportDataService payrollDataService;
 
 	@Autowired
 	private EmployeeRepository employeeRepository;
 
+	@Override
 	public PayrollReport generatePayrollReport() {
 
 		List<Employee> applicableEmployees = employeeRepository.findAllByOrderByBusinessId();
 
-		List<EmployeeReport> employeereports = new ArrayList<>();
+		List<EmployeeReport> employeeReportList = new ArrayList<>();
 
 		for (Employee employee : applicableEmployees) {
 
 			Map<PayoutPeriod, Double> employeePayrollData = payrollDataService
-					.computeEmployeeEfforts(employee.getEmployeeEfforts());
+					.computeWagesByPayoutPeriod(employee.getEmployeeEfforts());
 
 			for (PayoutPeriod payoutPeriod : employeePayrollData.keySet()) {
 
-				employeereports.add(generateEmployeeReport(payoutPeriod, employeePayrollData.get(payoutPeriod),
+				employeeReportList.add(generateEmployeeReport(payoutPeriod, employeePayrollData.get(payoutPeriod),
 						employee.getBusinessId()));
 			}
 
 		}
 
 		PayrollReport payrollReport = new PayrollReport();
-		payrollReport.setEmployeeReports(employeereports);
+		payrollReport.setEmployeeReports(employeeReportList);
 
 		return payrollReport;
 
 	}
 
-	EmployeeReport generateEmployeeReport(PayoutPeriod payoutPeriod, double totalWages, Long employeeId) {
+	private EmployeeReport generateEmployeeReport(PayoutPeriod payoutPeriod, double totalWages, Long employeeId) {
 		return new EmployeeReport(employeeId, payoutPeriod, totalWages);
 	}
 

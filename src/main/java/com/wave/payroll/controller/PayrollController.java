@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.wave.payroll.report.service.PayrollReportService;
 import com.wave.payroll.service.EmployeeEffortReportServiceImpl;
-import com.wave.payroll.service.PayrollReportService;
 import com.wave.payroll.service.dto.PayrollReport;
 
 @RestController
@@ -28,12 +28,12 @@ public class PayrollController {
 	}
 
 	@PostMapping("/data")
-	public void uploadDataReport(@RequestParam("file") MultipartFile file) {
+	public void importPayrollData(@RequestParam("file") MultipartFile importData) {
 
-		if (file == null) {
+		if (importData == null) {
 			throw new RuntimeException("Invalid file passed in parameter!");
 		}
-		employeeEffortService.importPayrollData(file);
+		employeeEffortService.importPayrollData(importData);
 	}
 
 }
