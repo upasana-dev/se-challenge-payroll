@@ -27,7 +27,7 @@ public class PayrollComputationUtils {
 		return new PayoutPeriod(periodStartDate, periodEndDate);
 	}
 
-	public static double calculateWages(int numberOfHoursWorked, JobGroup jobGroup) {
+	public static double calculateWages(double numberOfHoursWorked, JobGroup jobGroup) {
 		return numberOfHoursWorked * jobGroup.getHourlyWage();
 	}
 

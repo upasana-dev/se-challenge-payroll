@@ -51,4 +51,19 @@ public class Employee {
 	public void setBusinessId(Long businessId) {
 		this.businessId = businessId;
 	}
+
+	public Employee(Long businessId, List<EmployeeEffort> employeeEfforts) {
+		super();
+		this.businessId = businessId;
+		this.employeeEfforts = employeeEfforts;
+	}
+
+	public Employee(Long businessId) {
+		super();
+		this.businessId = businessId;
+	}
+
+	public Employee() {
+		super();
+	}
 }

@@ -19,4 +19,12 @@ public enum JobGroup {
 		return hourlyWage;
 	}
 
+	public static JobGroup convertToJobGroup(String groupName) {
+		return switch (groupName) {
+		case "A" -> A;
+		case "B" -> B;
+		default -> throw new RuntimeException("Invalid Job Group");
+		};
+	}
+
 }

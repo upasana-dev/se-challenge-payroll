@@ -23,7 +23,7 @@ public class EmployeeEffort {
 
 	private LocalDate effortDate;
 
-	private int hoursWorked;
+	private double hoursWorked;
 
 	@Enumerated(EnumType.STRING)
 	private JobGroup wageGroup;
@@ -36,11 +36,11 @@ public class EmployeeEffort {
 		this.effortDate = date;
 	}
 
-	public int getHoursWorked() {
+	public double getHoursWorked() {
 		return hoursWorked;
 	}
 
-	public void setHoursWorked(int hoursWorked) {
+	public void setHoursWorked(double hoursWorked) {
 		this.hoursWorked = hoursWorked;
 	}
 
