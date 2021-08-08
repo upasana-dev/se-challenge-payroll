@@ -2,7 +2,7 @@ package com.wave.payroll.data.service;
 
 import java.util.List;
 
-import com.wave.payroll.service.dto.EmployeeEffortData;
+import com.wave.payroll.service.info.dto.EmployeeEffortData;
 
 public interface EmployeeEffortDataService {
 

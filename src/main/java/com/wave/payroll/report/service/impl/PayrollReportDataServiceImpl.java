@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.wave.payroll.model.EmployeeEffort;
 import com.wave.payroll.model.constants.JobGroup;
 import com.wave.payroll.report.service.PayrollReportDataService;
-import com.wave.payroll.service.dto.PayoutPeriod;
+import com.wave.payroll.service.report.dto.PayoutPeriod;
 
 /**
  * Data-centric service targetted at performing data-specific logic related to

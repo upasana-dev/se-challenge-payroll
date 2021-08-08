@@ -20,7 +20,7 @@ import com.opencsv.bean.CsvToBeanBuilder;
 import com.wave.payroll.data.service.EmployeeEffortDataService;
 import com.wave.payroll.data.service.PayrollInfoFileDataService;
 import com.wave.payroll.info.service.PayrollInfoService;
-import com.wave.payroll.service.dto.EmployeeEffortData;
+import com.wave.payroll.service.info.dto.EmployeeEffortData;
 
 @Service
 public class PayrollInfoServiceImpl implements PayrollInfoService {

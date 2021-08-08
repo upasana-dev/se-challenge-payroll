@@ -12,7 +12,7 @@ import com.wave.payroll.data.service.EmployeeEffortDataService;
 import com.wave.payroll.model.Employee;
 import com.wave.payroll.model.EmployeeEffort;
 import com.wave.payroll.model.constants.JobGroup;
-import com.wave.payroll.service.dto.EmployeeEffortData;
+import com.wave.payroll.service.info.dto.EmployeeEffortData;
 
 /**
  * Data-centric service that performs functions relating to

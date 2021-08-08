@@ -1,4 +1,4 @@
-package com.wave.payroll.service.dto;
+package com.wave.payroll.service.info.dto;
 
 import java.time.LocalDate;
 

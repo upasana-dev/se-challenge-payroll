@@ -10,7 +10,7 @@ import java.util.Map;
 import org.junit.jupiter.api.Test;
 
 import com.wave.payroll.model.constants.JobGroup;
-import com.wave.payroll.service.dto.PayoutPeriod;
+import com.wave.payroll.service.report.dto.PayoutPeriod;
 
 public class PayrollDataServiceTest {
 

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.wave.payroll.model.EmployeeEffort;
-import com.wave.payroll.service.dto.PayoutPeriod;
+import com.wave.payroll.service.report.dto.PayoutPeriod;
 
 /**
  * Data-centric service targetted at performing data-specific logic related to

@@ -11,9 +11,9 @@ import com.wave.payroll.model.Employee;
 import com.wave.payroll.report.service.PayrollReportDataService;
 import com.wave.payroll.report.service.PayrollReportService;
 import com.wave.payroll.repository.EmployeeRepository;
-import com.wave.payroll.service.dto.EmployeeReport;
-import com.wave.payroll.service.dto.PayoutPeriod;
-import com.wave.payroll.service.dto.PayrollReport;
+import com.wave.payroll.service.report.dto.EmployeeReport;
+import com.wave.payroll.service.report.dto.PayoutPeriod;
+import com.wave.payroll.service.report.dto.PayrollReport;
 
 @Service
 public class PayrollReportServiceImpl implements PayrollReportService {

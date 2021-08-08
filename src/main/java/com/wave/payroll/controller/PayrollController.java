@@ -1,6 +1,8 @@
 package com.wave.payroll.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,7 +12,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.wave.payroll.info.service.PayrollInfoService;
 import com.wave.payroll.report.service.PayrollReportService;
-import com.wave.payroll.service.dto.PayrollReport;
 
 @RestController
 @RequestMapping("/payroll")
@@ -22,18 +23,29 @@ public class PayrollController {
 	@Autowired
 	private PayrollInfoService employeeEffortService;
 
+	@SuppressWarnings("rawtypes")
 	@GetMapping("/report")
-	public PayrollReport generatePayrollReport() {
-		return reportService.generatePayrollReport();
+	public ResponseEntity generatePayrollReport() {
+		try {
+			return ResponseEntity.status(HttpStatus.OK).body(reportService.generatePayrollReport());
+		} catch (Exception anyEx) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.body("An internal error was encountered while generating the report");
+		}
 	}
 
+	@SuppressWarnings("rawtypes")
 	@PostMapping("/data")
-	public void importPayrollData(@RequestParam("file") MultipartFile importData) {
+	public ResponseEntity importPayrollData(@RequestParam("file") MultipartFile importData) {
 
-		if (importData == null) {
-			throw new RuntimeException("Invalid file passed in parameter!");
+		try {
+			employeeEffortService.importEmployeeEffortInfo(importData);
+			return ResponseEntity.status(HttpStatus.CREATED).body("Employee Effort Info successfully imported");
+		} catch (Exception anyEx) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
+					"An internal error was encountered while importing the data - " + anyEx.getLocalizedMessage());
 		}
-		employeeEffortService.importEmployeeEffortInfo(importData);
+
 	}
 
 }
