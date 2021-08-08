@@ -51,8 +51,8 @@ public class PayrollReportServiceImpl implements PayrollReportService {
 
 	}
 
-	private EmployeeReport generateEmployeeReport(PayoutPeriod payoutPeriod, double totalWages, Long employeeId) {
-		return new EmployeeReport(employeeId, payoutPeriod, totalWages);
+	EmployeeReport generateEmployeeReport(PayoutPeriod payoutPeriod, double totalWages, Long employeeId) {
+		return new EmployeeReport(employeeId, payoutPeriod, EmployeeReport.convertAmountPaid(totalWages));
 	}
 
 }

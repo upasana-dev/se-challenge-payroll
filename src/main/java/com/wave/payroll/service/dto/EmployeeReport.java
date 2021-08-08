@@ -6,7 +6,7 @@ public class EmployeeReport {
 
 	private PayoutPeriod payPeriod;
 
-	private double amountPaid;
+	private String amountPaid;
 
 	public Long getEmployeeId() {
 		return employeeId;
@@ -24,15 +24,15 @@ public class EmployeeReport {
 		this.payPeriod = payPeriod;
 	}
 
-	public double getAmountPaid() {
+	public String getAmountPaid() {
 		return amountPaid;
 	}
 
-	public void setAmountPaid(double amountPaid) {
+	public void setAmountPaid(String amountPaid) {
 		this.amountPaid = amountPaid;
 	}
 
-	public EmployeeReport(Long employeeId, PayoutPeriod payPeriod, double amountPaid) {
+	public EmployeeReport(Long employeeId, PayoutPeriod payPeriod, String amountPaid) {
 		super();
 		this.employeeId = employeeId;
 		this.payPeriod = payPeriod;
@@ -41,5 +41,13 @@ public class EmployeeReport {
 
 	public EmployeeReport() {
 		super();
+	}
+
+	public static String convertAmountPaid(double amount) {
+		StringBuilder builder = new StringBuilder();
+		builder.append('$');
+		builder.append(String.format("%.2f", amount));
+
+		return builder.toString();
 	}
 }
